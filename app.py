@@ -39,18 +39,13 @@ class HelloServerHandler(BaseHTTPRequestHandler):
             headers=self.headers,
             environ={'REQUEST_METHOD':'POST'}
         )
-        if 'check1' in form:
-            ck1 = True
+        if 'radio1' in form:
+            r1 = form['radio1'].value
         else:
-            ck1 = False
-
-        if 'check2' in form:
-            ck2 = True
-        else:
-            ck2 = False
+            r1 = 'not selected'
 
         # res = form['textfield'].value
-        res = 'Check1:' + str(ck1) + ', Check2:' + str(ck2)
+        res = 'Radio:' + str(r1)
         self.send_response(200)
         self.end_headers()
         html = next.format(
