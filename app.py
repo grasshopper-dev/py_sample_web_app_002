@@ -39,13 +39,13 @@ class HelloServerHandler(BaseHTTPRequestHandler):
             headers=self.headers,
             environ={'REQUEST_METHOD':'POST'}
         )
-        if 'radio1' in form:
-            r1 = form['radio1'].value
+        if 'sel1' in form:
+            items = str(form.getlist('sel1'))
         else:
-            r1 = 'not selected'
+            items = 'no-item'
 
         # res = form['textfield'].value
-        res = 'Radio:' + str(r1)
+        res = 'Select:' + str(items)
         self.send_response(200)
         self.end_headers()
         html = next.format(
