@@ -14,17 +14,15 @@
     <p>{message}</p>
     <div>
         <form method="POST" action="/">
-            <div>
-                <input type="text" name="textfield"> 
-            </div>
-            <div>
-                <input type="radio" id="r1" name="radio1" value="male">
-                <label for="r1">male</label>
-            </div>
-            <div>
-                <input type="radio" id="r2" name="radio1" value="female">
-                <label for="r2">female</label>
-            </div>
+            <select name="sel1" multiple>
+                <option>Windows</option>
+                <option>macOS</option>
+                <option>Linux</option>
+                <option>android</option>
+                <option>iOS</option>
+                <option>iPadOS</option>
+                <option>ChromeOS</option>
+            </select>
             <input type="submit">
         </form>
     </div>
