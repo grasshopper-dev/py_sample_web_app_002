@@ -39,11 +39,23 @@ class HelloServerHandler(BaseHTTPRequestHandler):
             headers=self.headers,
             environ={'REQUEST_METHOD':'POST'}
         )
-        res = form['textfield'].value
+        if 'check1' in form:
+            ck1 = True
+        else:
+            ck1 = False
+
+        if 'check2' in form:
+            ck2 = True
+        else:
+            ck2 = False
+
+        # res = form['textfield'].value
+        res = 'Check1:' + str(ck1) + ', Check2:' + str(ck2)
         self.send_response(200)
         self.end_headers()
         html = next.format(
-            message='you typed: ' + res,
+            # message='you typed: ' + res,
+            message = res,
             data=form
         )
         self.wfile.write(html.encode('utf-8'))
