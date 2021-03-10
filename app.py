@@ -1,5 +1,6 @@
 from urllib.parse import urlparse, parse_qs
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from cgi import FieldStorage
 
 # load html file.
 with open('index.html', mode='r') as f:
@@ -31,16 +32,37 @@ class HelloServerHandler(BaseHTTPRequestHandler):
         else:
             self.error()
         return
+    
+    def do_POST(self):
+        form = FieldStorage(
+            fp=self.rfile,
+            headers=self.headers,
+            environ={'REQUEST_METHOD':'POST'}
+        )
+        if 'radio1' in form:
+            r1 = form['radio1'].value
+        else:
+            r1 = 'not selected'
+
+        # res = form['textfield'].value
+        res = 'Radio:' + str(r1)
+        self.send_response(200)
+        self.end_headers()
+        html = next.format(
+            # message='you typed: ' + res,
+            message = res,
+            data=form
+        )
+        self.wfile.write(html.encode('utf-8'))
+        return
 
     # index action
     def index(self):
-        _url = urlparse(self.path)
         self.send_response(200)
         self.end_headers()
         html = index.format(
             title='Hello',
-            link='/next?' + _url.query,
-            message='ようこそ、HttpServerの世界へ！'
+            message='Form送信'
         )
         self.wfile.write(html.encode('utf-8'))
         return

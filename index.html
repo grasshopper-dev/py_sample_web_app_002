@@ -3,15 +3,30 @@
 <head>
     <title>{title}</title>
     <meta charset="utf-8"/>
-    <style>
+    <!-- <style>
     body {{margin: 10px;}}
     h1 {{color: lightgray; font-size: 36pt;}}
     p {{font-size: 16pt;}}
-    </style>
+    </style> -->
 </head>
 <body>
     <h1>{title}</h1>
     <p>{message}</p>
-    <p><a href="{link}">go to next &gt;&gt;</a></p>
+    <div>
+        <form method="POST" action="/">
+            <div>
+                <input type="text" name="textfield"> 
+            </div>
+            <div>
+                <input type="radio" id="r1" name="radio1" value="male">
+                <label for="r1">male</label>
+            </div>
+            <div>
+                <input type="radio" id="r2" name="radio1" value="female">
+                <label for="r2">female</label>
+            </div>
+            <input type="submit">
+        </form>
+    </div>
 </body>
 </html>
